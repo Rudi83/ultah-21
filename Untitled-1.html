@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Untuk Kesayangan</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            background: linear-gradient(135deg, #000000, #15225c);
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            text-align: left;
+            color: rgb(255, 255, 255);
+            animation: fadeIn 1s ease-in-out;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        h1 {
+            font-size: 2em;
+            animation: bounce 3s infinite;
+        }
+
+        .decorative-element {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        /* Animasi Pulse */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Posisi Elemen Dekoratif */
+        .circle1 { width: 100px; height: 100px; top: 4%; left: 10%; }
+        .circle2 { width: 150px; height: 150px; top: 60%; right: 15%; }
+        .circle3 { width: 120px; height: 120px; bottom: 25%; left: 22%; }
+
+
+        .slide-title {
+            font-size: 2em;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInSlideUp 1s ease-in-out forwards;
+        }
+
+        img {
+            width: 550px; /* Atur ukuran gambar sesuai keinginan */
+            animation: fadeInDown 1.2s ease-in-out;
+            margin-bottom: 20px;
+        }
+
+       .gallery {
+        display :flex;
+        flex-direction : row;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 20px 0;
+       }
+       
+        .gallery-item {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .gallery-item img {
+            margin: 2px ;
+            width: 145px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInSlideUp {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-30px); }
+            60% { transform: translateY(-15px); }
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: px;
+            background-color: #ffffff;
+            color: #000000;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin-top: 6px;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        footer {
+            position:relative;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgb(117, 111, 111);
+            font-size: 1.2em;
+        }
+
+        .ad-container {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            animation: slide 10s linear infinite;
+        }
+
+        @keyframes slide {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+    </style>
+</head>
+<body>
+    <div class="decorative-element circle1"></div>
+    <div class="decorative-element circle2"></div>
+    <div class="decorative-element circle3"></div>
+
+    
+
+    <div class="container" id="slide1">
+        <img src="cantik.png" alt="Gambar Estetik">
+        <h1>Happy Birthday Sayangku Kelenku</h1>
+        <button id="playButton">Sini</button>
+        <audio id="audio" src="1.mp3"></audio>
+    </div>
+
+    <div class="container hidden" id="slide2">
+        <h1 class="slide-title">Sedikit Pameran Kita</h1>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="sekul.jpeg" alt="Gambar 1">
+            </div>
+            <div class="gallery-item">
+                <img src="pantai.jpeg" alt="Gambar 2">
+            </div>
+            <div class="gallery-item">
+                <img src="PJA02723.jpeg" alt="Gambar 3">
+            </div>
+            <div class="gallery-item">
+                <img src="nganten.jpeg" alt="Gambar 4">
+            </div>
+        </div>
+        <button id="nextButton">Lanjut</button>
+        <button id="prevButton">Mundur</button>
+    </div>
+
+    <div class="container hidden" id="slide3">
+        <h1>Kasihku</h1>
+        <p>Maaci sayang Uda tetep terus sama abang, walau abang sering buat ade sedih, badmood, abang selalu sayang sama adee sayangkuu, tetep terus sama abang ya sayangyaa, jangan ilangin rasa sayang abang yaa</p>
+        <div class="ad-container">
+            <p>LOPYOU SAYANGKU CINTAKU MANISKU DUNIAKU CALON ISTRIKU</p>
+        </div>
+    </div>
+
+    <footer>
+        <p id="currentDate"></p>
+    </footer>
+
+    <script>
+        const playButton = document.getElementById('playButton');
+        const audio = document.getElementById('audio');
+        const nextButton = document.getElementById('nextButton');
+        const prevButton = document.getElementById('prevButton');
+        const prevButtonSlide3 = document.getElementById('prevButtonSlide3');
+        const slide1 = document.getElementById('slide1');
+        const slide2 = document.getElementById('slide2');
+        const slide3 = document.getElementById('slide3');
+        const currentDate = document.getElementById('currentDate');
+
+        // Menampilkan tanggal saat ini
+        const date = new Date("05 februari 2023");
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        currentDate.textContent = date.toLocaleDateString('id-ID', options);
+
+        playButton.addEventListener('click', () => {
+            audio.play();
+            slide1.classList.add('hidden');
+            slide2.classList.remove('hidden');
+        });
+
+        nextButton.addEventListener('click', () => {
+            slide2.classList.add('hidden');
+            slide3.classList.remove('hidden');
+        });
+
+        prevButton.addEventListener('click', () => {
+            slide2.classList.add('hidden');
+            slide1.classList.remove('hidden');
+        });
+
+        prevButtonSlide3.addEventListener('click', () => {
+            slide3.classList.add('hidden');
+            slide2.classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
